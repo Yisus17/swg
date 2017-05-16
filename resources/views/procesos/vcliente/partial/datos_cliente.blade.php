@@ -1,3 +1,4 @@
+    <link rel="stylesheet" type="text/css" href="{{ url('swg.css') }}">
 <div class="row">
     <div class="col-md-6">
         <b>Canal:</b>  {{ $cliente->canal->descripcion_canal}}
@@ -44,7 +45,7 @@
             <div class="panel-title">Formulario</div>
 
         </div>
-        <div class="panel-body pn">
+        <div class="panel-body">
             <div class="row mt20">
                 <div class="col-md-12 form-content">
 

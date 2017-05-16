@@ -1,21 +1,23 @@
-    <div class="dd" id="nestable-{{ $categoria->id}}">
-        <ol class="dd-list ">
-            <li class="dd-item dd-nodrag" data-id="10">
-                <div class="dd-handle  dd-primary">{{ $categoria->descripcion_categoria }}
-                    <span class="pull-right fs11 fw600">
-                            <button type="button" class="btn btn-default btn-xs ">
-                                <i class="fa fa-plus-circle"></i>
-                            </button>
-                    </span>
-                </div>
-                <!--                -->
-                <ol class="dd-list pb15">
-                    <li class="dd-item"></li>
-                </ol>
-                <!-- -->
-            </li>
-        </ol>
-    </div>
+<link rel="stylesheet" type="text/css" href="{{ url('swg.css') }}">
+<div class="dd" id="nestable-{{ $categoria->id}}">
+    <ol class="dd-list ">
+        <li class="dd-item dd-nodrag" data-id="10">
+            <div class="dd-handle  dd-primary">{{ $categoria->descripcion_categoria }}
+                <span class="pull-right fs11 fw600">
+                        <button type="button" class="btn btn-default btn-xs ">
+                            <i class="fa fa-plus-circle"></i>
+                        </button>
+                </span>
+            </div>
+            <!--                -->
+            <ol class="dd-list pb15">
+                <li class="dd-item"></li>
+            </ol>
+            <!-- -->
+        </li>
+    </ol>
+</div>
+
 <script>
 
     nlist = $('#nestable-{{ $categoria->id }}').nestable({
