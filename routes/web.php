@@ -161,3 +161,6 @@ Route::get('/calendario/eventos/','CalendarController@eventos');
 Route::post('/vcliente/ajax','VClienteController@ajax');
 Route::get('/vcliente/{id_cliente}','VClienteController@index');
 Route::get('/vcliente/{id_cliente}/{id_categoria}','VClienteController@marca');
+
+Route::get('/guardar_visita','VClienteController@guardarVisitaCliente');
+

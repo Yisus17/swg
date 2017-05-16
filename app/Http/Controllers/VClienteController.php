@@ -10,6 +10,10 @@ use App\Materialpop;
 use App\Pais;
 use App\PuntoConexion;
 use App\Submarca;
+use App\ActividadCompetencia;
+use App\ActividadDisponibilidad;
+use App\ActividadMaterialPop;
+use App\ActividadPuntoConexion;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -87,5 +91,84 @@ class VClienteController extends Controller
     }
     function getSubMarcaForSelect($marca_id){
         return Submarca::where('marca_id','=',$marca_id)->pluck('descripcion_submarca','id')->all();
+    }
+
+    //Salvar datos recopilados durante la visita al cliente
+    public function guardarVisitaCliente(Request $request){
+        $actividad_id = 2; //$request->actividad
+        $submarca_id = 8; //$request->submarca
+
+        //COMPETENCIA------------------------------
+        $actividadCompetenciaData = [];
+        
+        $competenciaData = [ //$request->competencia
+            1 => 12.78, 
+            2 => 21.00
+        ];
+
+         foreach ($competenciaData as $competenciaId => $precioBotella) {
+            array_push(
+                $actividadCompetenciaData, 
+                [
+                    'actividad_id' => $actividad_id, 
+                    'submarca_id' => $submarca_id,
+                    'competencia_marca_id' => $competenciaId,
+                    'precio_botella' => $precioBotella
+                ]
+            );  
+        }
+
+        //MATERIAL POP ---------------------------
+        $actividadMaterialPopData = [];
+        $material_pop_ids = [1,4,5]; //$request->materialpop
+
+        foreach ($material_pop_ids as $key => $material_pop) {
+            array_push(
+                $actividadMaterialPopData, 
+                [
+                    'actividad_id' => $actividad_id, 
+                    'submarca_id' => $submarca_id,
+                    'materialpop_id' => $material_pop
+                ]
+            );  
+        }
+
+        // PUNTO CONEXION -----------------------------
+        $actividadPuntoConexionData = [
+            'actividad_id' => $actividad_id,
+            'submarca_id' => $submarca_id,
+            'punto_conexion_id' => 2,//request->punto_conexion
+            'lleva_marca' => true //request->lleva_marca
+        ];
+
+        // DISPONIBILIDAD -----------------------------
+        $actividadDisponibilidad = [];
+        $disponible = true; //$request->disponible
+
+        if($disponible){
+            $actividadDisponibilidad = [
+                'actividad_id' => $actividad_id, 
+                'submarca_id' => $submarca_id,
+                'hay_disponibilidad' => $disponible,
+                'precio_botella' => 20.20, //$request->precio_botella
+                'numero_caras' => 3, //$request->numero_caras
+            ];
+
+        }else{
+             $actividadDisponibilidad = [
+                'actividad_id' => $actividad_id, 
+                'submarca_id' => $submarca_id,
+                'hay_disponibilidad' => $disponible,
+            ];
+        }
+
+        //dd($actividadDisponibilidad, $actividadCompetenciaData, $actividadMaterialPopData, $actividadPuntoConexionData);
+
+        //ActividadDisponibilidad::create($actividadDisponibilidad);
+        //ActividadCompetencia::create($actividadCompetenciaData);
+        //ActividadMaterialPop::create($actividadMaterialPopData);
+        //ActividadPuntoConexion::create($actividadPuntoConexionData);
+
+        dd("Terminé");
     }
 }
