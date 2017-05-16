@@ -1,0 +1,229 @@
+
+// This file is reserved for your custom changes or additions
+
+.multiselect.btn-default{
+  background-color: rgb(244, 244, 244);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.multiselect.dropdown-toggle.btn-sm{
+  font-size: 14px;
+}
+.fa-dot-circle-o::before {
+  font-size: 20px;
+}
+.count{
+  font-size: 25px;
+  font-weight: 700;
+  .time{
+    font-size: 18px;
+    font-weight: 300;
+    margin-top: 5px;
+  }
+  & + .progress{
+    margin-top: 8px;
+  }
+}
+.ecommerce_chart1{
+  .highcharts-legend{
+    .highcharts-legend-item{
+      path{
+        stroke-width: 12 !important;
+      }
+    }
+  }
+}
+.liner-bg{
+  background: transparent repeating-linear-gradient(-45deg, #fff, #fff 3px, #f9f9f9 3px, #f9f9f9 6px) repeat scroll 0% 0%;
+}
+.fa-map-marker {
+  position: relative;
+  top: 3px;
+}
+.btn:active, .btn.active {
+  -webkit-box-shadow: inset -3px 3px 5px rgba(0, 0, 0, 0.165);
+  box-shadow: inset -3px 3px 5px rgba(0, 0, 0, 0.165);
+}
+.btn-warning,
+.btn-warning.active,
+.btn-warning:active,
+.btn-warning.btn-hover,
+.btn-warning:hover,
+.bg-warning,
+.label-warning,
+.alert-warning,
+.alert-warning .alert-link,
+.alert-warning .close{
+  color: @text-color;
+}
+
+.socials{
+  a{
+    display: inline-block;
+    .fa{
+      font-size: 21px;
+      line-height: 30px;
+      display: inline-block;
+      color: #fff;
+      width: 31px;
+      height: 30px;
+      text-align: center;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+    }
+    .fa-facebook{
+      background-color: #30487c;
+    }
+    .fa-twitter{
+      background-color: #3aaeda;
+    }
+    .fa-google-plus{
+      background-color: #c03020;
+    }
+    .fa-phone{
+      background-color: #00c3aa;
+    }
+    .fa-envelope{
+      font-size: 18px;
+      line-height: 31px;
+      background-color: #565858;
+    }
+  }
+}
+.arrow-white{
+  &::before{
+    border-color: transparent #fff transparent transparent !important;
+  }
+}
+
+.admin-form .btn-warning, .admin-form .btn-warning:hover, .admin-form .btn-warning:focus, .admin-form .btn-warning:active, .badge-warning {
+  color: #797b7c !important;
+}
+.calendar-lg{
+  .fc-basic-view td.fc-day-number, .fc-basic-view td.fc-week-number span{
+    padding: 20px;
+  }
+}
+.circle{
+  border-radius: 50px !important;
+}
+.table-controls{
+  .btn{
+    padding: 9px 10px;
+  }
+}
+.legend-item{
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.legend-item.active,
+.legend-item.active:focus{
+  background-color: @brand-primary;
+  color: #fff;
+}
+
+.add-alt{
+  top: -2px !important;
+  right: 0px !important;
+  height: 41px !important;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+}
+.sidebar-white{
+  background-color: #fff !important;
+}
+.navbar[class*='bg-'] .navbar-search input, .navbar[class*='bg-'] .navbar-search input:focus {
+  background-color: rgba(255, 255, 255, 0.53);
+}
+.alert-warning .close{
+  text-shadow: 0 1px 0 #797b7c;
+}
+.admin-form .file .button{
+  z-index: 15;
+}
+
+.navbar[class*="bg-"] .nav > li.menu-merge.open .dropdown-menu.white-drop{
+  &:after {
+    border-bottom-color: #fff;
+  }
+}
+.w100p{
+  width: 100% !important;
+}
+
+.theme-switcher{
+  position: fixed;
+  right: -205px;
+  top: 260px;
+  z-index: 100;
+  background-color: #F5F5F5;
+  width: 200px;
+  border: 1px solid #C0C6CA;;
+  transition: .2s;
+}
+.theme-switcher.active{
+  right: 0;
+}
+.theme-switcher__header{
+  min-width: 250px;
+  padding: 10px 10px 10px 28px;
+  margin-top: -1px;
+  margin-left: -50px;
+  background-color: #E4E4E4;
+  border: 1px solid #D8D7D7;
+  position: relative;
+  cursor: pointer;
+  color: #333;
+}
+.theme-switcher__title{
+  text-align: center;
+  font-size: 18px;
+}
+.theme-switcher__item a{
+  display: inline-block;
+  padding: 8px 20px;
+  font-size: 16px;
+  color: #4D4E4E;
+}
+
+.theme-switcher__item a:hover img{
+  opacity: 1;
+  top: 10px;
+  left: -210%;
+  transition: .3s;
+}
+.theme-switcher__item a img {
+  pointer-events: none;
+  opacity: 0;
+  z-index: -1;
+  position: absolute;
+  left: -240%;
+  transition: .005s;
+}
+.theme-switcher__icon{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  width: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #00c3aa;
+}
+.theme-switcher__icon:after{
+  font-family: "FontAwesome";
+  content: "\f0d0";
+}
+ /*Custom css */
+
+#content_wrapper {
+  padding-top: 60px;
+}
+
+.panel-body .dataTables_wrapper {
+  padding: 14px;
+}
