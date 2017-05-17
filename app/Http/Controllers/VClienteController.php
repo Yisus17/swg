@@ -17,6 +17,7 @@ use App\ActividadPuntoConexion;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
+
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 
@@ -94,7 +95,7 @@ class VClienteController extends Controller{
     }
 
     //Salvar datos recopilados durante la visita al cliente
-    public function guardarVisitaCliente(Request $request){
+    public function guardarActividadSubmarca(Request $request){
 
         $actividad_id = 2; //$request->actividad
         $submarca_id = 8; //$request->submarca
@@ -184,6 +185,34 @@ class VClienteController extends Controller{
                 ];
             }
         //}
+
+        // FOTO ----------------------------------------------
+        /*if($request->file('foto')){
+
+            $actividadFotoData = [];
+
+            try{
+                $currentFile=$request->file('foto');
+                if( $currentFile->isValid() ) {
+                    $filePath = public_path('images/visitas');
+                    $fileName = uniqid('visita_') . $actividad_id . '_'. $submarca_id .  '.' . $currentFile->getClientOriginalExtension();
+                    $currentFile->move($filePath, $fileName);
+
+                    $actividadFotoData = [
+                        'actividad_id' => $actividad_id, 
+                        'submarca_id' => $submarca_id,
+                        'url' => '/images/visitas/'. $fileName,
+                        'categoria' => 1
+                    ];
+
+                }else{
+                    throw new \Exception ("Imagen no válida");
+                }
+            }catch(\Exception $e){
+                Log::error($e->getMessage());
+                dd('Error foto');
+            }
+        }*/
 
         // GUARDAR DATA ---------------------------------
         ActividadDisponibilidad::create($actividadDisponibilidad);
