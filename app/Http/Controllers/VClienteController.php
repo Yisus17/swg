@@ -43,6 +43,7 @@ class VClienteController extends Controller{
 
                 $categoria_id =  $request->categoria;
                 $pais_id = $request->pais;
+                //return Marca::where('categoria_id','like',$categoria_id)->where('pais_id','like',$pais_id)->pluck('descripcion_marca','id');
                 return $this->getMarcasPorPaisForSelect($categoria_id, $pais_id);
                 break;
             case 'getFormSubMarca':
@@ -53,14 +54,8 @@ class VClienteController extends Controller{
                 $submarcas = $this->getSubMarcaForSelect($marca_id);
                 $materialpop = Materialpop::all();
                 $puntodeconexiones = PuntoConexion::all();
-
-
-                return view('procesos.vcliente.partial.submarca',compact('marca','submarcas','marcascompetencias','materialpop','puntodeconexiones'));
-                break;
-
-            case 'getSubMarcaPorMarcaPais':
-                $marca_id=$request->marca;
-                return $this->getSubMarcaForSelect($marca_id);
+                
+                return view('procesos.vcliente.partial.submarca',compact('marca','submarcas','marcascompetencias','materialpop','puntodeconexiones','marcascompetencias'));
                 break;
         }
         return 'no entro';
