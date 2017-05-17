@@ -1,5 +1,5 @@
-
-   <!--  <ol class="dd-list pb15" id="ol{{ $marca->id }}">
+<!-- 
+<ol class="dd-list pb15" id="ol{{ $marca->id }}">
         <li class="dd-item" >
             <div class="dd-handle">Marca: {{ $marca->descripcion_marca }}
                 <span class="pull-right fs11 fw600">
@@ -96,7 +96,7 @@
                 </div>
             </div>
         </li>
-    </ol> -->
+    </ol>  -->
 
     <ol class="dd-list" id="ol{{ $marca->id }}" >
         <li class="dd-item" >
