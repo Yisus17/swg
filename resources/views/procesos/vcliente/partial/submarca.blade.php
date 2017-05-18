@@ -1,5 +1,101 @@
 
-    <ol class="dd-list" id="ol{{ $marca->id }}" >
+<!-- <ol class="dd-list pb15" id="ol{{ $marca->id }}">
+        <li class="dd-item" >
+            <div class="dd-handle">Marca: {{ $marca->descripcion_marca }}
+                <span class="pull-right fs11 fw600">
+                        <button type="button" id="btn_delete{{$marca->id}}" class="btn btn-default btn-xs ">
+                            <i class="fa fa-trash-o"></i>
+                        </button>
+                </span>
+            </div>
+            <div class="dd-content">
+                <div class="pb15 br-b">
+                    <label class="control-label">SubMarca:</label>
+                    {!! Form::select('submarcas'.$marca->id,$submarcas,null,['class'=>'form-control','id'=>'submarcas'.$marca->id,'style'=>'width:100%']) !!}
+                </div>
+                <div class="pb15 mt15 br-b">
+                    <table width="100%">
+                        <tr>
+                            <td align="center">
+                                <label class="control-label">Disponible</label>
+                                {!! Form::checkbox('disponible'.$marca->id,1,false,['class'=>'form-control','id'=>'disponbile'.$marca->id]) !!}</td>
+                            <td align="center">
+                                <label class="control-label">OOS</label>
+                                {!! Form::checkbox('oos'.$marca->id,1,false,['class'=>'form-control','id'=>'oos'.$marca->id]) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" class="p5">
+                                <label class="control-label">Precio</label>
+                                {!! Form::text('precio'.$marca->id,null,['class'=>'form-control','id'=>'precio'.$marca->id]) !!}</td>
+                            <td align="center" class="p5">
+                                <label class="control-label">Caras Disponibles</label>
+                                {!! Form::text('caras'.$marca->id,null,['class'=>'form-control','id'=>'caras'.$marca->id]) !!}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="pb15 mt15 br-b">
+                    <h4>Competencia:</h4>
+                    <table width="100%">
+                        <tr>
+                            @foreach($marcascompetencias as $competencia )
+                            <td align="center" class="p5">
+                                <label class="control-label">{{$competencia->descripcion_producto}}</label>
+                                {!! Form::text('precio'.$marca->id.'_'.$competencia->id,$competencia->precio,['class'=>'form-control','id'=>'precio'.$marca->id]) !!}</td>
+                            @endforeach
+                        </tr>
+                    </table>
+                </div>
+                <div class="pb15 mt15 br-b">
+                    <h4>Material Pop:</h4>
+                    <table width="100%">
+                        <tr>
+                            @foreach($materialpop as $material )
+                                <td align="center" class="p5">
+                                    <label class="control-label">{{$material->descripcion_material_pop}}</label>
+                                    {!! Form::checkbox('mp'.$marca->id.'_'.$material->id,1,false,['class'=>'form-control','id'=>'mp'.$marca->id.'_'.$material->id]) !!}
+                            @endforeach
+                        </tr>
+                    </table>
+                </div>
+                <div class="pb15 mt15 br-b">
+                    <h4>Punto de Conexión:</h4>
+                    <table width="100%">
+                        <tr>
+                            @foreach($puntodeconexiones as $punto)
+                                <td align="center" class="p5">
+                                    <table>
+                                        <tr>
+                                            <td align="center">
+                                                <label class="control-label">{{$punto->descripcion_punto}}</label>
+                                                {!! Form::checkbox('punto'.$marca->id.'_'.$punto->id,1,false,['class'=>'form-control','id'=>'punto'.$marca->id.'_'.$punto->id]) !!}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center">
+                                                <label class="control-label">¿Vestido?</label>
+                                                {!! Form::checkbox('puntov'.$marca->id.'_'.$punto->id,1,false,['class'=>'form-control','id'=>'puntov'.$marca->id.'_'.$punto->id]) !!}
+                                            </td>
+                                        </tr>
+                                    </table>
+                            @endforeach
+                        </tr>
+                    </table>
+                </div>
+                <div class="mt15">
+                    <span class="pull-right fs11 fw600">
+                        <button type="button" class="btn btn-warning btn-xs ">
+                            <i class="fa fa-warning"></i>
+                        </button>
+                    </span>
+                    {!! Form::button('Grabar',['class'=>'btn btn-default','id'=>'btn_grabar'.$marca->id]) !!}
+                </div>
+            </div>
+        </li>
+    </ol> 
+ -->
+     <ol class="dd-list" id="ol{{ $marca->id }}" >
         <li class="dd-item" >
         <button id="mas" data-action="expand" type="button" style="display: block;">Expand</button>
         <button id="menos" data-action="collapse" type="button" style="display: none;">Collapse</button>
@@ -11,34 +107,35 @@
                 </span>
             </div>
             <div class="dd-content" id="dd-content">
-                <form>
+                <form method="post" action="{{url(/vcliente/guardar_actividad_submarca)}}">
+                    <input type="hidden" name="actividad" value="{{}}">
                     <div class=" br-b pb15 mt15">
                         <div class="form-group ">
                             <label class="control-label ">SubMarca:</label>
-                            <select class="form-control">
+                            <select class="form-control" name="submarca">
                                 @foreach ($submarcas as $key => $submarca)
                                     <option value="{{ $key }}">{{ $submarca }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
-
+ 
                     <div class="form-group">
                         <label class="control-label">Disponibilidad :</label>
-                        <input type="checkbox" name="disponible">
+                        <input type="checkbox" name="disponible" value=0>
                     </div>
 
                     <div class="row br-b pb15 mt15">
                         <div class="col-lg-6 col-xs-12">
                             <div class="form-group">
                               <label for="precio">Precio:</label>
-                              <input type="text" class="form-control" id="precio">
+                              <input type="text" class="form-control" id="precio" name="precio_botella">
                             </div>
                         </div>
                         <div class="col-lg-6 col-xs-12">
                             <div class="form-group">
                               <label for="caras">Caras Disponibles</label>
-                              <input type="text" class="form-control" id="caras">
+                              <input type="text" class="form-control" id="caras" name="numero_caras">
                             </div>
                         </div>
                     </div>
@@ -49,12 +146,12 @@
                         <div class="row">
                             <div class="col-lg-3 col-xs-12">    
                                 <div class="form-group label-center">
-                                    <label class="control-label">{{$competencia->descripcion_producto}}</label>
+                                    <label class="control-label" >{{$competencia->descripcion_producto}}</label>
                                 </div>
                             </div>
                             <div class="col-lg-9 col-xs-12 label-center">  
                                 <div class="form-group">  
-                                    <input type="text" class="form-control" id="marcascompetencias" placeholder="Precio">
+                                    <input type="text" class="form-control" id="marcascompetencias" placeholder="Precio" name="competencia[{{$competencia->id}}]">
                                 </div>
                             </div>
                         </div>
@@ -65,7 +162,7 @@
                         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <div class="form-group">
                                  <label class="checkbox-inline">
-                                    <input type="checkbox">Hablador
+                                    <input type="checkbox" name="">Hablador
                                 </label>
                             </div>
                             <div class="form-group">
@@ -102,7 +199,7 @@
 
                     <div class="form-group">
                         <h4>Punto de Conexión</h4>
-                        <select class="form-control">
+                        <select class="form-control " name="punto_conexion">
                             @foreach ($puntodeconexiones as $key => $punto)
                                 <option value="{{ $key }}">{{$punto->descripcion_punto}}</option>
                             @endforeach
@@ -110,7 +207,7 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label">¿Vestido?</label>
-                        <input type="checkbox" name="vestido">
+                        <input type="checkbox" name="lleva_marca">
                     </div>
 
                     <div class="form-group">
