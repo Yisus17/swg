@@ -168,7 +168,7 @@
                                     <input id="" class="check-categorias" name="materialpop[]" value="{{$material->id}}" type="checkbox">{{$material->descripcion_material_pop}}
                                 </label>
                             </div>
-                        @endforeach
+                        @endforeach 
                     </div>
                     <br>
                     <br> 
