@@ -110,11 +110,11 @@
              
                 <form id="actividadSubmarca" method="post" action="{{url('vcliente/guardar_actividad_submarca')}}" enctype="multipart/form-data">
                     {!! csrf_field() !!}
-                    <input class="visitaData" type="hidden" name="actividad" value="">
+                    <input type="hidden" name="actividad" value="">
                     <div class=" br-b pb15 mt15">
                         <div class="form-group ">
                             <label class="control-label ">SubMarca:</label>
-                            <select class="form-control visitaData" name="submarca">
+                            <select class="form-control" name="submarca">
                                 @foreach ($submarcas as $key => $submarca)
                                     <option value="{{ $key }}">{{ $submarca }}</option>
                                 @endforeach
@@ -124,20 +124,20 @@
  
                     <div class="form-group">
                         <label class="control-label ">Disponibilidad :</label>
-                        <input class="visitaData" type="checkbox" name="disponible" value="1">
+                        <input type="checkbox" name="disponible" value="1">
                     </div>
 
                     <div class="row br-b pb15 mt15">
                         <div class="col-lg-6 col-xs-12">
                             <div class="form-group">
                               <label for="precio">Precio:</label>
-                              <input type="text" class="form-control visitaData" id="precio" name="precio_botella">
+                              <input type="text" class="form-control" id="precio" name="precio_botella">
                             </div>
                         </div>
                         <div class="col-lg-6 col-xs-12">
                             <div class="form-group">
                               <label for="caras">Caras Disponibles</label>
-                              <input type="text" class="form-control visitaData" id="caras" name="numero_caras">
+                              <input type="text" class="form-control" id="caras" name="numero_caras">
                             </div>
                         </div>
                     </div>
@@ -153,7 +153,7 @@
                             </div>
                             <div class="col-lg-9 col-xs-12 label-center">  
                                 <div class="form-group">  
-                                    <input type="text" class="form-control visitaData" id="marcascompetencias" name="competencia[{{$competencia->id}}]">
+                                    <input type="text" class="form-control" id="marcascompetencias" name="competencia[{{$competencia->id}}]">
                                 </div>
                             </div>
                         </div>
@@ -209,7 +209,7 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label">¿Punto de conexión vestido con arte de marca?</label>
-                        <input class="visitaData" type="checkbox" name="lleva_marca" value="1">
+                        <input type="checkbox" name="lleva_marca" value="1">
                     </div>
 
                     <div class="form-group">
@@ -257,16 +257,17 @@
 
     $('#actividadSubmarca').submit(function (e){
         e.preventDefault();
-        //var formData = new FormData($(this)[0]);
+        var data = new FormData(this);
         var url = $(this).attr( 'action' );
-        var data = new FormData();
+        
+        /*var data = new FormData();
 
         $.each($('.visitaData', $(this) ), function(i, fileds){
             data.append($(fileds).attr('name'), $(fileds).val());
         });
         $.each($('input[type=file]', $(this) )[0].files, function (i, file) {
             data.append(file.name, file);
-        });
+        });*/
 
         $.ajax({
             url:url,

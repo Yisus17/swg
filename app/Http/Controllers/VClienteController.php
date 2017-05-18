@@ -96,7 +96,6 @@ class VClienteController extends Controller{
 
     //Salvar datos recopilados durante la visita al cliente
     public function guardarActividadSubmarca(Request $request){
-
         $success = 1;
 
         if(!isset($request->submarca))
@@ -112,17 +111,19 @@ class VClienteController extends Controller{
             $competenciaData = $request->competencia;
 
             foreach ($competenciaData as $competenciaId => $precioBotella) {
-                array_push(
-                    $actividadCompetenciaData, 
-                    [
-                        'actividad_id' => $actividad_id, 
-                        'submarca_id' => $submarca_id,
-                        'competencia_marca_id' => $competenciaId,
-                        'precio_botella' => $precioBotella,
-                        'created_at'    => Carbon::now(),
-                        'updated_at'    => Carbon::now()
-                    ]
-                );  
+                if($precioBotella != "" && $precioBotella != null){
+                    array_push(
+                        $actividadCompetenciaData, 
+                        [
+                            'actividad_id' => $actividad_id, 
+                            'submarca_id' => $submarca_id,
+                            'competencia_marca_id' => $competenciaId,
+                            'precio_botella' => $precioBotella,
+                            'created_at'    => Carbon::now(),
+                            'updated_at'    => Carbon::now()
+                        ]
+                    );
+                }  
             }
         }
        
@@ -218,6 +219,8 @@ class VClienteController extends Controller{
                 dd('Error foto');
             }
         }*/
+
+        //dd($actividadDisponibilidad, $actividadCompetenciaData, $actividadMaterialPopData, $actividadPuntoConexionData);
 
         // GUARDAR DATA ---------------------------------
         ActividadDisponibilidad::create($actividadDisponibilidad);
