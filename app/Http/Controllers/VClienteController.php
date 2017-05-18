@@ -147,7 +147,6 @@ class VClienteController extends Controller{
                 );  
             }
         }
-        
 
         // PUNTO CONEXION -----------------------------
         $actividadPuntoConexionData = [];

@@ -39,7 +39,7 @@
 
 </div>
 
-<div class="row p15">
+<div class="row p15 no-side-padding">
     <div class="panel panel-visible">
         <div class="panel-heading">
             <div class="panel-title">Formulario</div>

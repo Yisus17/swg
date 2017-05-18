@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="{{ url('theme/vendor/plugins/magnific/magnific-popup.css') }}">
 <!-- Select 2 core CSS file -->
 <link rel="stylesheet" type="text/css" href="{{ url('theme/vendor/plugins/select2/css/core.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url('swg.css') }}">
 <style>
     .mfp-iframe-holder .mfp-content{
         width:100%;
@@ -15,16 +16,27 @@
     .mfp-iframe-scaler iframe {
         background-color: white;
     }
-
+.dd-categoria{
+    background: rgba(158, 161, 163, 0.58);
+    color: black;
+}
 </style>
 
 @endpush
 
 @section('content')
+<style type="text/css">
+    @media screen and (max-width: 420px) {
+    .no-side-padding {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+}
 
-    <div class="tray tray-center">
+</style>
+    <div class="tray tray-center no-side-padding">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 no-side-padding">
                 <div class="panel panel-visible">
                     <div class="panel-heading">
                         <div class="panel-title">
