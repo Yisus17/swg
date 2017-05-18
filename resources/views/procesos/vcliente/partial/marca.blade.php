@@ -41,11 +41,9 @@
                                 {!!  Form::select('marcas', $marcas , null, ['class'=>'form-control','id'=>'marcas','required']) !!}
                             </div>
                         </div>
-
                         <div class="form-group">
                             {!! Form::button('Adicionar',['class'=>'btn btn-default','id'=>'btn_seleccionar']) !!}
                         </div>
-
                     </form>
 
                 </div>

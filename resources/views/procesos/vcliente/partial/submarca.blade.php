@@ -93,8 +93,8 @@
                 </div>
             </div>
         </li>
-    </ol> 
- -->
+    </ol>  -->
+
      <ol class="dd-list" id="ol{{ $marca->id }}" >
         <li class="dd-item" >
         <button id="mas" data-action="expand" type="button" style="display: block;">Expand</button>
@@ -159,43 +159,14 @@
                     @endforeach
 
                     <h4>Material Pop</h4><br>
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                 <label class="checkbox-inline">
-                                    <input type="checkbox" name="">Hablador
+                    <div class="bs-component" id="materialpop">
+                        @foreach($materialpop as $material)
+                            <div class="col-xs-12 col-sm-4 col-md-3">
+                                <label class="checkbox-inline mr10">
+                                    <input id="" class="check-categorias" value="" type="checkbox">{{$material->descripcion_material_pop}}
                                 </label>
                             </div>
-                            <div class="form-group">
-                                <label class="checkbox-inline">
-                                    <input type="checkbox">Shelf Strip
-                                </label>
-                            </div>
-                        </div>  
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label class="checkbox-inline">
-                                    <input type="checkbox">Traffic Stopper
-                                </label>
-                            </div>
-                            <div class="form-group">
-                                <label class="checkbox-inline">
-                                    <input type="checkbox">Collarin
-                                </label>
-                            </div>
-                        </div>  
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label class="checkbox-inline">
-                                    <input type="checkbox">Leeflets
-                                </label>
-                            </div>
-                            <div class="form-group">
-                                <label class="checkbox-inline">
-                                    <input type="checkbox">Colgantes
-                                </label>
-                            </div>
-                        </div>  
+                        @endforeach
                     </div>
 
                     <div class="form-group">
