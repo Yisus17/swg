@@ -97,24 +97,19 @@ class VClienteController extends Controller{
     //Salvar datos recopilados durante la visita al cliente
     public function guardarActividadSubmarca(Request $request){
 
-        dd($request->all());
+        $success = 1;
+
+        if(!isset($request->submarca))
+            $success = 0;
 
         $actividad_id = 2; //$request->actividad
-        $submarca_id = 8; //$request->submarca
-
-        if(!isset($actividad_id) || !isset($submarca_id))
-            dd("Error");
+        $submarca_id = $request->submarca;
         
-            
-
         //COMPETENCIA------------------------------
         $actividadCompetenciaData = [];
         
-        //if($request->competencia){
-             $competenciaData = [ //$request->competencia
-                1 => 12.78, 
-                2 => 21.00
-            ];
+        if(isset($request->competencia)){
+            $competenciaData = $request->competencia;
 
             foreach ($competenciaData as $competenciaId => $precioBotella) {
                 array_push(
@@ -129,14 +124,14 @@ class VClienteController extends Controller{
                     ]
                 );  
             }
-        //}
+        }
        
 
         //MATERIAL POP ---------------------------
         $actividadMaterialPopData = [];
         
-        //if($request->materialpop){
-            $material_pop_ids = [1,4,5]; //$request->materialpop
+        if(isset($request->materialpop)){
+            $material_pop_ids = $request->materialpop;
 
             foreach ($material_pop_ids as $key => $material_pop) {
                 array_push(
@@ -150,43 +145,51 @@ class VClienteController extends Controller{
                     ]
                 );  
             }
-        //}
+        }
         
 
         // PUNTO CONEXION -----------------------------
         $actividadPuntoConexionData = [];
 
-        //if(isset(request->punto_conexion) && isset(request->lleva_marca)){
+        if(isset($request->punto_conexion)){
+            $lleva_marca = isset($request->lleva_marca);
             $actividadPuntoConexionData = [
                 'actividad_id' => $actividad_id,
                 'submarca_id' => $submarca_id,
-                'punto_conexion_id' => 2,//request->punto_conexion
-                'lleva_marca' => true //request->lleva_marca
+                'punto_conexion_id' => $request->punto_conexion,
+                'lleva_marca' => $lleva_marca
             ];
-        //}
+        }
 
         // DISPONIBILIDAD -----------------------------
         $actividadDisponibilidad = [];
 
-        //if(isset($request->disponible)){
-            $disponible = true; //$request->disponible
-            if($disponible){
-                $actividadDisponibilidad = [
-                    'actividad_id' => $actividad_id, 
-                    'submarca_id' => $submarca_id,
-                    'hay_disponibilidad' => $disponible,
-                    'precio_botella' => 20.20, //$request->precio_botella
-                    'numero_caras' => 3, //$request->numero_caras
-                ];
-
-            }else{
-                $actividadDisponibilidad = [
-                    'actividad_id' => $actividad_id, 
-                    'submarca_id' => $submarca_id,
-                    'hay_disponibilidad' => $disponible,
-                ];
+        if(isset($request->disponible)){
+            $precio_botella = 0;
+            if(isset($request->precio_botella)){
+                $precio_botella = $request->precio_botella;
             }
-        //}
+
+            $numero_caras = 0;
+            if(isset($request->precio_botella)){
+                $numero_caras = $request->numero_caras;
+            }
+
+            $actividadDisponibilidad = [
+                'actividad_id' => $actividad_id, 
+                'submarca_id' => $submarca_id,
+                'hay_disponibilidad' => true,
+                'precio_botella' => $precio_botella,
+                'numero_caras' => $numero_caras,
+            ];
+
+        }else{
+            $actividadDisponibilidad = [
+                'actividad_id' => $actividad_id, 
+                'submarca_id' => $submarca_id,
+                'hay_disponibilidad' => false,
+            ];
+        }
 
         // FOTO ----------------------------------------------
         /*if($request->file('foto')){
@@ -222,6 +225,6 @@ class VClienteController extends Controller{
         ActividadMaterialPop::insert($actividadMaterialPopData);
         ActividadPuntoConexion::create($actividadPuntoConexionData);
         
-        dd("Terminé");
+        return $success;
     }
 }
