@@ -12,7 +12,7 @@
 }
 
 .form-content{
-	padding:0 1.563em;
+	padding:0;
 }
 
 .categories{
@@ -27,3 +27,21 @@
     background: #ededed;	
 }
 
+#uploadPreview{
+	max-width: 50%;
+}
+
+.dd-list .dd-list {
+    padding-left: 1rem;
+}
+
+.panel-body{
+	padding: 1rem;
+
+.separador{
+	border-bottom: 1px solid #dfdfdf !important;
+}
+
+#content.table-layout > div, #content.table-layout > section {
+    padding-top: 5px !important;
+}

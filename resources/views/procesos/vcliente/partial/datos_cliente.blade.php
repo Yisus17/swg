@@ -1,4 +1,4 @@
-    <link rel="stylesheet" type="text/css" href="{{ url('swg.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url('swg.css') }}">
 <div class="row">
     <div class="col-md-6">
         <b>Canal:</b>  {{ $cliente->canal->descripcion_canal}}
@@ -45,7 +45,7 @@
             <div class="panel-title">Formulario</div>
 
         </div>
-        <div class="panel-body">
+        <div class="panel-body" style="padding: 1rem;">
             <div class="row mt20">
                 <div class="col-md-12 form-content">
 
@@ -81,35 +81,20 @@
 @push('scripts')
 
 <script type="text/javascript">
-
     var mfp, omfp;
-
     jQuery(document).ready(function() {
-
         $(".check-categorias").click(function () {
-
             var categoria_id;
-
             categoria_id = $(this).val();
-
             if ($(this).is(':checked')){
-
                 $.post( '/vcliente/ajax',{ f:'getFormCategoria', categoria:categoria_id}, function( data ) {
-
                     $('#formulario-categoria-'+categoria_id).html(data);
-
                 });
-
             }else{
-
                 $('#formulario-categoria-'+categoria_id).html('');
-
             }
-
         });
-
     });
-
 </script>
 
 @endpush

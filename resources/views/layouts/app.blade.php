@@ -25,7 +25,9 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ url('theme/assets/img/logo.ico') }}">
+    <!-- custom css -->
 
+    <link rel="stylesheet" type="text/css" href="{{url('swg.css')}}">
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
