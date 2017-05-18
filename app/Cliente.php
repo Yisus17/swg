@@ -25,4 +25,8 @@ class Cliente extends Model
     {
         return $this->belongsTo('App\Colaborador','vendedor');
     }
+
+    function actividades(){
+        return $this->hasMany('App\Actividad','actividad_id');
+    }
 }

@@ -39,7 +39,7 @@
                         <span class="fa fa-check"></span>
                     </div>
                     <div class="fc-event-desc">
-                        <a href="{{ url("vcliente/$actividad->cliente_id") }}"><b> {{ Carbon\Carbon::parse($actividad->start)->format('d-m-Y H:i A') }} - </b>{{ $actividad->title }}</a></div>
+                        <a href="{{ url('vcliente/'.$actividad->id) }}"><b> {{ Carbon\Carbon::parse($actividad->start)->format('d-m-Y H:i A') }} - </b>{{ $actividad->title }}</a></div>
                 </div>
             @endforeach
 

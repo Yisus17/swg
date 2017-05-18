@@ -110,8 +110,9 @@
              
                 <form id="actividadSubmarca" method="post" action="{{url('vcliente/guardar_actividad_submarca')}}" enctype="multipart/form-data">
                     {!! csrf_field() !!}
-                    <input type="hidden" name="actividad" value="">
-                    <div class=" br-b pb15 mt15">
+                    <input type="hidden" name="actividad" value="{{$actividadId}}">
+
+                    <div class="br-b pb15 mt15">
                         <div class="form-group ">
                             <label class="control-label ">SubMarca:</label>
                             <select class="form-control" name="submarca">
@@ -125,10 +126,9 @@
                     <div class="form-group">
                         <label class="control-label">Disponibilidad :</label>
                         <input type="checkbox" name="disponible" value="1" id="disponibilidad">
-
                     </div>
 
-                    <div class="row br-b pb15 mt15" id="datos_disponibilidad" style="display: none;">
+                    <div class="row pb15 mt15" id="datos_disponibilidad" style="display: none;">
                         <div class="col-lg-6 col-xs-12">
                             <div class="form-group">
                               <label for="precio">Precio:</label>
@@ -142,9 +142,9 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="br-b">
                         <h4>Competencias</h4><br>
-                        
                         @foreach($marcascompetencias as $competencia )
                             <div class="row">
                                 <div class="col-lg-3 col-xs-12">    
@@ -231,6 +231,7 @@
 
     $('#actividadSubmarca').submit(function (e){
         e.preventDefault();
+
         var data = new FormData(this);
         var url = $(this).attr( 'action' );
         
@@ -253,6 +254,7 @@
             success: function (result) {
                 if(parseInt(result) == 1){
                     alert("Los datos recolectados durante la visita se han guardado exitosamente");
+                    $('#ol{{$marca->id}}').remove();
                 }else{
                     alert("Ha ocurrido un error");
                 }

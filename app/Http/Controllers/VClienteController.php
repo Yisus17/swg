@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actividad;
 use App\Categoria;
 use App\Cliente;
 use App\CompetenciaMarca;
@@ -23,9 +24,11 @@ use Illuminate\Support\Facades\DB;
 
 class VClienteController extends Controller{
 
-    function index($cliente_id){
-        session(['cliente_id' => $cliente_id]);
-        $cliente = Cliente::find($cliente_id);
+    function index($actividad_id){
+        session(['actividad_id' => $actividad_id]);
+        $actividad = Actividad::find($actividad_id);
+        $cliente = $actividad->cliente;
+        session(['cliente_id' => $cliente->id]);
         $categorias = Categoria::all();
         return view('procesos.vcliente.index', compact('cliente','categorias'));
     }
@@ -55,8 +58,9 @@ class VClienteController extends Controller{
                 $submarcas = $this->getSubMarcaForSelect($marca_id);
                 $materialpop = Materialpop::all();
                 $puntodeconexiones = PuntoConexion::all();
-                
-                return view('procesos.vcliente.partial.submarca',compact('marca','submarcas','marcascompetencias','materialpop','puntodeconexiones','marcascompetencias'));
+                $actividadId = session('actividad_id');
+
+                return view('procesos.vcliente.partial.submarcadata',compact('marca','submarcas','marcascompetencias','materialpop','puntodeconexiones','marcascompetencias', 'actividadId'));
                 break;
         }
         return 'no entro';
