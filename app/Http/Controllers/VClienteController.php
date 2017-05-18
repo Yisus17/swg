@@ -56,7 +56,7 @@ class VClienteController extends Controller{
                 $materialpop = Materialpop::all();
                 $puntodeconexiones = PuntoConexion::all();
                 
-                return view('procesos.vcliente.partial.submarca',compact('marca','submarcas','marcascompetencias','materialpop','puntodeconexiones','marcascompetencias'));
+                return view('procesos.vcliente.partial.submarcadata',compact('marca','submarcas','marcascompetencias','materialpop','puntodeconexiones','marcascompetencias'));
                 break;
         }
         return 'no entro';
