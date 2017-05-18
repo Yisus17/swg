@@ -97,6 +97,8 @@ class VClienteController extends Controller{
     //Salvar datos recopilados durante la visita al cliente
     public function guardarActividadSubmarca(Request $request){
 
+        dd($request->all());
+
         $actividad_id = 2; //$request->actividad
         $submarca_id = 8; //$request->submarca
 

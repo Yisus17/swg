@@ -108,7 +108,8 @@
             </div>
             <div class="dd-content" id="dd-content">
              
-                <form method="post" action="{{url('vcliente/guardar_actividad_submarca')}}">
+                <form method="post" action="{{url('vcliente/guardar_actividad_submarca')}}" enctype="multipart/form-data">
+                    {!! csrf_field() !!}
                     <input type="hidden" name="actividad" value="">
                     <div class=" br-b pb15 mt15">
                         <div class="form-group ">
@@ -123,7 +124,7 @@
  
                     <div class="form-group">
                         <label class="control-label">Disponibilidad :</label>
-                        <input type="checkbox" name="disponible" value=0>
+                        <input type="checkbox" name="disponible" value="1">
                     </div>
 
                     <div class="row br-b pb15 mt15">
@@ -152,7 +153,7 @@
                             </div>
                             <div class="col-lg-9 col-xs-12 label-center">  
                                 <div class="form-group">  
-                                    <input type="text" class="form-control" id="marcascompetencias" placeholder="Precio" name="competencia[{{$competencia->id}}]">
+                                    <input type="text" class="form-control" id="marcascompetencias" name="competencia[{{$competencia->id}}]">
                                 </div>
                             </div>
                         </div>
@@ -173,26 +174,30 @@
                         <h4>Punto de Conexión</h4>
                         <select class="form-control " name="punto_conexion">
                             @foreach ($puntodeconexiones as $key => $punto)
-                                <option value="{{ $key }}">{{$punto->descripcion_punto}}</option>
+                                <option value="{{ $punto->id }}">{{$punto->descripcion_punto}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">¿Vestido?</label>
-                        <input type="checkbox" name="lleva_marca">
+                        <label class="control-label">¿Punto de conexión vestido con arte de marca?</label>
+                        <input type="checkbox" name="lleva_marca" value="1">
                     </div>
 
                     <div class="form-group">
                         <img id="uploadPreview" src= "{{ url('assets/img/default-image.png') }}" class="img-responsive" /></br></br>
-                        <input type="file" id="banner" name="banner" class="form-control" accept="image/*" />
+                        <input type="file" id="fotoGondola" name="foto_gondola" class="form-control" accept="image/*" />
                     </div>
-                {!! Form::button('Grabar',['class'=>'btn btn-default','id'=>'btn_grabar'.$marca->id]) !!}
+
+                    <div class="form-group">
+                        <button type="submit" value="Grabar" id="btn_grabar{{$marca->id}}" class="btn btn-default">Grabar</button>
+                    </div>
                 </form>
             </div>
         </li>
     </ol>
+
 <script>
-    $("#banner").change(function() {
+    $("#fotoGondola").change(function() {
         if($(this).val()!=""){
             if ($(this)[0].files && $(this)[0].files[0]) {
                 var reader = new FileReader();
@@ -203,11 +208,13 @@
             }
         }
     });
+
     $('#mas').click(function (){
         $('#dd-content').show();
         $('#menos').show();
         $('#mas').hide();
     });
+
     $('#menos').click(function (){
         $('#dd-content').hide();
         $('#menos').hide();
@@ -217,11 +224,5 @@
     $('#btn_delete{{$marca->id}}').click(function (){
         if (confirm('¿Desea eliminar la sección de {{$marca->descripcion_marca}}?'))
             $('#ol{{$marca->id}}').remove();
-    });
-
-    $('#btn_grabar{{$marca->id}}').click(function (){
-        if (confirm('Los datos se han grabado satisfactoriamente ¿Desea adicionar una nueva marca?')){
-            omfp.magnificPopup('open'); // Will open the popup
-        }
     });
 </script>
