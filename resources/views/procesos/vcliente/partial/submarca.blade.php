@@ -108,7 +108,7 @@
             </div>
             <div class="dd-content" id="dd-content">
              
-                <form method="post" action="{{url('vcliente/guardar_actividad_submarca')}}" enctype="multipart/form-data">
+                <form id="actividadSubmarca" method="post" action="{{url('vcliente/guardar_actividad_submarca')}}" enctype="multipart/form-data">
                     {!! csrf_field() !!}
                     <input type="hidden" name="actividad" value="">
                     <div class=" br-b pb15 mt15">
@@ -125,6 +125,7 @@
                     <div class="form-group">
                         <label class="control-label">Disponibilidad :</label>
                         <input type="checkbox" name="disponible" value="1" id="disponibilidad">
+
                     </div>
 
                     <div class="row br-b pb15 mt15" id="datos_disponibilidad" style="display: none;">
@@ -164,7 +165,7 @@
                         @foreach($materialpop as $material)
                             <div class="col-xs-12 col-sm-4 col-md-3">
                                 <label class="checkbox-inline mr10">
-                                    <input id="" class="check-categorias" value="" type="checkbox">{{$material->descripcion_material_pop}}
+                                    <input id="" class="check-categorias" name="materialpop[]" value="{{$material->id}}" type="checkbox">{{$material->descripcion_material_pop}}
                                 </label>
                             </div>
                         @endforeach
@@ -173,7 +174,7 @@
 
                     <div class="form-group">
                         <h4>Punto de Conexión</h4>
-                        <select class="form-control " name="punto_conexion">
+                        <select class="form-control visitaData" name="punto_conexion">
                             @foreach ($puntodeconexiones as $key => $punto)
                                 <option value="{{ $punto->id }}">{{$punto->descripcion_punto}}</option>
                             @endforeach
@@ -239,12 +240,44 @@
             $('#ol{{$marca->id}}').remove();
     });
 
+    $('#actividadSubmarca').submit(function (e){
+        e.preventDefault();
+        var data = new FormData(this);
+        var url = $(this).attr( 'action' );
+        
+        /*var data = new FormData();
+
+        $.each($('.visitaData', $(this) ), function(i, fileds){
+            data.append($(fileds).attr('name'), $(fileds).val());
+        });
+        $.each($('input[type=file]', $(this) )[0].files, function (i, file) {
+            data.append(file.name, file);
+        });*/
+
+        $.ajax({
+            url:url,
+            type: 'POST',
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                if(parseInt(result) == 1){
+                    alert("Los datos recolectados durante la visita se han guardado exitosamente");
+                }else{
+                    alert("Ha ocurrido un error");
+                }
+            }, 
+        });
+    });
+
     $('#disponibilidad').change(function() {
-    if($('#disponibilidad').is(':checked')){
-        $('#datos_disponibilidad').show();
-    }
-    else{
-        $('#datos_disponibilidad').hide();
-    }
-});
+        if($('#disponibilidad').is(':checked')){
+            $('#datos_disponibilidad').show();
+        }
+        else{
+            $('#datos_disponibilidad').hide();
+        }
+    });
+
 </script>
