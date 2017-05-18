@@ -169,6 +169,7 @@
                             </div>
                         @endforeach
                     </div>
+                    <br>
 
                     <div class="form-group">
                         <h4>Punto de Conexión</h4>
@@ -183,11 +184,21 @@
                         <input type="checkbox" name="lleva_marca" value="1">
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group imagen">
                         <img id="uploadPreview" src= "{{ url('assets/img/default-image.png') }}" class="img-responsive" />
                         <label for="fotoGondola" class="btn">Subir Foto</label>
                         <input type="file" id="fotoGondola" name="foto_gondola" class="form-control" accept="image/*"  style="display: none;" />
                     </div>
+                    <style type="text/css">
+                        @media screen and (max-width: 420px) {
+                            .imagen{
+                                text-align: center;
+                            }
+                            #uplodaPreview{
+                                max-width: 100% !important;
+                            }
+                        }
+                    </style>
 
                     <div class="form-group">
                         <button type="submit" value="Grabar" id="btn_grabar{{$marca->id}}" class="btn btn-default">Grabar</button>
