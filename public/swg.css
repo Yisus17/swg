@@ -32,7 +32,7 @@
 }
 
 .dd-list .dd-list {
-    padding-left: 1rem;
+    padding-left: 0rem;
 }
 
 .panel-body{
@@ -46,6 +46,18 @@
     padding-top: 5px !important;
 }
 
-#materialpop{
-	margin-bottom: 6rem !important;
+.materialpop{
+	margin-bottom: 6rem;
+}
+
+.dd-categoria{
+	background: rgba(158, 161, 163, 0.58);
+    color: black;
+}
+
+@media screen and (max-width: 420px) {
+    .no-side-padding {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
 }

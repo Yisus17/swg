@@ -94,7 +94,7 @@
             </div>
         </li>
     </ol>  -->
-
+<link rel="stylesheet" type="text/css" href="{{ url('swg.css') }}">
      <ol class="dd-list" id="ol{{ $marca->id }}" >
         <li class="dd-item" >
         <button id="mas" data-action="expand" type="button" style="display: block;">Expand</button>
@@ -124,10 +124,10 @@
  
                     <div class="form-group">
                         <label class="control-label">Disponibilidad :</label>
-                        <input type="checkbox" name="disponible" value="1">
+                        <input type="checkbox" name="disponible" value="1" id="disponibilidad">
                     </div>
 
-                    <div class="row br-b pb15 mt15">
+                    <div class="row br-b pb15 mt15" id="datos_disponibilidad" style="display: none;">
                         <div class="col-lg-6 col-xs-12">
                             <div class="form-group">
                               <label for="precio">Precio:</label>
@@ -141,26 +141,26 @@
                             </div>
                         </div>
                     </div>
-
-                    <h4>Competencias</h4><br>
-                    
-                    @foreach($marcascompetencias as $competencia )
-                        <div class="row">
-                            <div class="col-lg-3 col-xs-12">    
-                                <div class="form-group label-center">
-                                    <label class="control-label" >{{$competencia->descripcion_producto}}</label>
+                    <div class="br-b">
+                        <h4>Competencias</h4><br>
+                        
+                        @foreach($marcascompetencias as $competencia )
+                            <div class="row">
+                                <div class="col-lg-3 col-xs-12">    
+                                    <div class="form-group label-center">
+                                        <label class="control-label" >{{$competencia->descripcion_producto}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-9 col-xs-12 label-center">  
+                                    <div class="form-group">  
+                                        <input type="text" class="form-control" id="marcascompetencias" name="competencia[{{$competencia->id}}]">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-9 col-xs-12 label-center">  
-                                <div class="form-group">  
-                                    <input type="text" class="form-control" id="marcascompetencias" name="competencia[{{$competencia->id}}]">
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-
+                        @endforeach
+                    </div>
                     <h4>Material Pop</h4><br>
-                    <div class="bs-component" id="materialpop">
+                    <div class="bs-component materialpop" style="margin-bottom: 5rem; ">
                         @foreach($materialpop as $material)
                             <div class="col-xs-12 col-sm-4 col-md-3">
                                 <label class="checkbox-inline mr10">
@@ -178,14 +178,15 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group br-b">
                         <label class="control-label">¿Punto de conexión vestido con arte de marca?</label>
                         <input type="checkbox" name="lleva_marca" value="1">
                     </div>
 
                     <div class="form-group">
-                        <img id="uploadPreview" src= "{{ url('assets/img/default-image.png') }}" class="img-responsive" /></br></br>
-                        <input type="file" id="fotoGondola" name="foto_gondola" class="form-control" accept="image/*" />
+                        <img id="uploadPreview" src= "{{ url('assets/img/default-image.png') }}" class="img-responsive" />
+                        <label for="fotoGondola" class="btn">Subir Foto</label>
+                        <input type="file" id="fotoGondola" name="foto_gondola" class="form-control" accept="image/*"  style="display: none;" />
                     </div>
 
                     <div class="form-group">
@@ -197,6 +198,7 @@
     </ol>
 
 <script>
+   
     $("#fotoGondola").change(function() {
         if($(this).val()!=""){
             if ($(this)[0].files && $(this)[0].files[0]) {
@@ -225,4 +227,13 @@
         if (confirm('¿Desea eliminar la sección de {{$marca->descripcion_marca}}?'))
             $('#ol{{$marca->id}}').remove();
     });
+
+    $('#disponibilidad').change(function() {
+    if($('#disponibilidad').is(':checked')){
+        $('#datos_disponibilidad').show();
+    }
+    else{
+        $('#datos_disponibilidad').hide();
+    }
+});
 </script>
